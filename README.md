@@ -12,6 +12,32 @@ cargo watch -q -c -w src/ -x check -x test -x run
 
 To avoid recompiling when changing anything else than the source code, the cargo-watch command is configured to only watch the `src/` directory.
 
+### Run tests
+
+To run the tests, use the following command:
+
+```bash
+cargo test
+```
+
+To run tests with logging enabled, use the following command:
+
+```bash
+TEST_LOG=true cargo test health_check_works | bunyan
+```
+
+OBS: The `bunyan` command is used to format the logs in a more readable way. You can install it using the following command:
+
+```bash
+npm install -g bunyan
+```
+
+or
+
+```bash
+cargo install bunyan
+```
+
 ## Cargo Dependencies
 
 Install sqlx-cli to run migrations:
@@ -114,3 +140,27 @@ To check for vulnerabilities, use the following command:
 ```bash
 cargo audit
 ```
+
+### Remove unused dependencies
+
+To remove unused dependencies, you can use the cargo-udeps tool. First, install the tool using the following command:
+
+```bash
+cargo install cargo-udeps
+```
+
+To remove unused dependencies, use the following command:
+
+```bash
+cargo udeps
+```
+
+## Tips
+
+These are some usefull tracing/logging crates:
+
+- tracing
+- tracing-bunyan-formatter
+- tracing-log
+- tracing-subscriber
+- secrecy (Protect your logs from leaking sensitive information)
