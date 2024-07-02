@@ -12,7 +12,32 @@ cargo watch -q -c -w src/ -x check -x test -x run
 
 To avoid recompiling when changing anything else than the source code, the cargo-watch command is configured to only watch the `src/` directory.
 
-## Measure Code Coverage
+## Cargo Dependencies
+
+Install sqlx-cli to run migrations:
+
+```bash
+cargo install --no-default-features \
+--features rustls,postgres
+```
+
+## Scripts
+
+To run the database run the script in the folder `scripts/init_db.sh`:
+
+```bash
+./scripts/init_db.sh
+```
+
+If the DB has already been deployed before, you the add the variable `SKIP_DOCKER` to skip the docker deployment:
+
+```bash
+SKIP_DOCKER=true ./scripts/init_db.sh
+```
+
+## Rust Development Tools
+
+### Measure Code Coverage
 
 First, install cargo-tarpaulin:
 
@@ -28,7 +53,7 @@ cargo tarpaulin --ignore-tests
 
 Check the tarpaullin documentation for more information [here](https://github.com/xd009642/tarpaulin)
 
-## Clippy Linting - Your new best friend
+### Clippy Linting - Your new best friend
 
 Clippy is a collection of lints to catch common mistakes and improve your Rust code.
 
@@ -52,7 +77,7 @@ cargo clippy -- -D warnings
 
 Clippy's documentation can be found [here](https://github.com/rust-lang/rust-clippy)
 
-## Rust Formatting
+### Rust Formatting
 
 Rustfmt is Rust's official formatting tool. It can be installed using the following command:
 
@@ -74,7 +99,7 @@ cargo fmt -- --check
 
 Rustfmt's documentation can be found [here](https://github.com/rust-lang/rustfmt)
 
-## Rust Crates Security
+### Rust Crates Security
 
 To check for security vulnerabilities in your dependencies, you can use the cargo-audit tool. Cargo-deny is also another tool that can be used to check for security vulnerabilities.
 
