@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# For the script to work with Github Actions, leave the path as it is
+
 set -x
 set -eo pipefail
 
