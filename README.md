@@ -38,13 +38,12 @@ or
 cargo install bunyan
 ```
 
-## Cargo Dependencies
+### Docker
 
-Install sqlx-cli to run migrations:
+To build the docker image, use the following command:
 
 ```bash
-cargo install --no-default-features \
---features rustls,postgres
+docker build --tag zero2prod --file Dockerfile .
 ```
 
 ## Scripts
@@ -62,6 +61,21 @@ SKIP_DOCKER=true ./scripts/init_db.sh
 ```
 
 ## Rust Development Tools
+
+### Run Migrations
+
+Install sqlx-cli to run migrations:
+
+```bash
+cargo install --no-default-features \
+--features rustls,postgres
+```
+
+If you want to use sqlx offline, you can use the following command:
+
+```bash
+cargo sqlx prepare --workspace
+```
 
 ### Measure Code Coverage
 
