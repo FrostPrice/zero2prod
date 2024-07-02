@@ -46,6 +46,12 @@ To build the docker image, use the following command:
 docker build --tag zero2prod --file Dockerfile .
 ```
 
+To run the docker image, use the following command:
+
+```bash
+docker run --rm -p 8000:8000 zero2prod
+```
+
 ## Scripts
 
 To run the database run the script in the folder `scripts/init_db.sh`:
@@ -59,6 +65,12 @@ If the DB has already been deployed before, you the add the variable `SKIP_DOCKE
 ```bash
 SKIP_DOCKER=true ./scripts/init_db.sh
 ```
+
+## Optmizations
+
+To learn about symbol stripping, check the following [link](https://github.com/johnthagen/min-sized-rust#strip-symbols-from-binary)
+
+The Docker image rust:alpine is used to build the final image. This image is very small, but it does not have the necessary tools to debug the application. To debug the application, you can use the image rust:slim.
 
 ## Rust Development Tools
 
@@ -167,6 +179,28 @@ To remove unused dependencies, use the following command:
 
 ```bash
 cargo udeps
+```
+
+### Cargo Chef
+
+Allow to build the dependencies in a separate step, to speed up the build process.
+
+First, install the tool using the following command:
+
+```bash
+cargo install cargo-chef
+```
+
+To prepare the dependencies, use the following command:
+
+```bash
+cargo chef prepare --recipe-path recipe.json
+```
+
+To build the dependencies, use the following command:
+
+```bash
+cargo chef cook --release --recipe-path recipe.json
 ```
 
 ## Tips
