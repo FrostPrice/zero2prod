@@ -11,6 +11,7 @@ RUN apt update && apt install lld clang -y
 
 FROM chef AS planner
 COPY . .
+
 # Compute a lock-like file for our project
 RUN cargo chef prepare --recipe-path recipe.json
 
@@ -18,11 +19,12 @@ RUN cargo chef prepare --recipe-path recipe.json
 # We use the latest Rust stable release as base image
 FROM chef AS builder
 
+COPY --from=planner /app/recipe.json recipe.json
+
 # Build project dependencies, and not the app
 RUN cargo chef cook --release --recipe-path recipe.json
 # Up to this point, if our dependency tree stays the same,
 # all layers should be cached.
-
 
 # Copy all files from our working environment to our Docker image
 COPY . .
