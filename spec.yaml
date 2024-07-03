@@ -55,3 +55,4 @@ databases:
     size: db-s-dev-database
     # Postgres version
     version: "16"
+# ! For postgres 14 and above, the schema public needs to be given access to create tables
