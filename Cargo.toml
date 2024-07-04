@@ -40,9 +40,16 @@ tracing-subscriber = { version = "0.3.18", features = [
     "registry",
     "env-filter",
 ] }
+unicode-segmentation = "1.11.0"
 uuid = { version = "1.9.1", features = ["v4"] }
+validator = "0.18.1"
 
 # Used only when running tests or examples
 # Are not compiled in the final binary
 [dev-dependencies]
+claims = "0.7.1"
+fake = "2.9.2"
+quickcheck = "1.0.3"
+quickcheck_macros = "1.0.0"
+rand = "0.8.5"
 reqwest = "0.12.5"

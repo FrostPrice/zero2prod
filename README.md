@@ -205,10 +205,11 @@ cargo chef cook --release --recipe-path recipe.json
 
 ## Tips
 
-These are some usefull tracing/logging crates:
+These are some usefull crates:
 
 - tracing
 - tracing-bunyan-formatter
 - tracing-log
 - tracing-subscriber
 - secrecy (Protect your logs from leaking sensitive information)
+- fake (Generate random fake data)
