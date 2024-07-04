@@ -56,3 +56,6 @@ databases:
     # Postgres version
     version: "16"
 # ! For postgres 14 and above, the schema public needs to be given access to create tables
+# GRANT ALL PRIVILEGES ON DATABASE newsletter TO newsletter;
+# GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO newsletter;
+# GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO newsletter;
