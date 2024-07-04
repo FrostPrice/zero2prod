@@ -43,6 +43,10 @@ tracing-subscriber = { version = "0.3.18", features = [
 unicode-segmentation = "1.11.0"
 uuid = { version = "1.9.1", features = ["v4"] }
 validator = "0.18.1"
+reqwest = { version = "0.12.5", default-features = false, features = [
+    "json",
+    "rustls-tls",
+] }
 
 # Used only when running tests or examples
 # Are not compiled in the final binary
@@ -52,4 +56,6 @@ fake = "2.9.2"
 quickcheck = "1.0.3"
 quickcheck_macros = "1.0.0"
 rand = "0.8.5"
-reqwest = "0.12.5"
+serde_json = "1.0.120"
+tokio = { version = "1.38.0", features = ["rt", "macros"] }
+wiremock = "0.6.0"

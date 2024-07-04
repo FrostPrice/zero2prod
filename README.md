@@ -213,3 +213,4 @@ These are some usefull crates:
 - tracing-subscriber
 - secrecy (Protect your logs from leaking sensitive information)
 - fake (Generate random fake data)
+- wiremock
