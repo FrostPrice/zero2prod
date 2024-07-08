@@ -214,3 +214,5 @@ These are some usefull crates:
 - secrecy (Protect your logs from leaking sensitive information)
 - fake (Generate random fake data)
 - wiremock
+- linkify (extract links from text)
+- tera (template engine for emails)
