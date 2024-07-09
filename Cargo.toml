@@ -48,6 +48,8 @@ reqwest = { version = "0.12.5", default-features = false, features = [
     "rustls-tls",
 ] }
 rand = { version = "0.8.5", features = ["std_rng"] }
+thiserror = "1.0.61"
+anyhow = "1.0.86"
 
 # Used only when running tests or examples
 # Are not compiled in the final binary

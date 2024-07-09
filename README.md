@@ -89,6 +89,16 @@ If you want to use sqlx offline, you can use the following command:
 cargo sqlx prepare --workspace
 ```
 
+To get the logs from sqlx, run:
+
+```bash
+# sqlx logs are a bit spammy, cutting them out to reduce noise
+export RUST_LOG="sqlx=error,info"
+export TEST_LOG=true
+# Runing the logs for tests
+cargo t <TEST_NAME> | bunyan
+```
+
 ### Measure Code Coverage
 
 First, install cargo-tarpaulin:
@@ -216,3 +226,5 @@ These are some usefull crates:
 - wiremock
 - linkify (extract links from text)
 - tera (template engine for emails)
+- thiserror (better error handling)
+- anyhow (better error handling, working together with thiserror)
