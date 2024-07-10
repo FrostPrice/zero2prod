@@ -1,8 +1,9 @@
 use super::email_client::EmailClient;
 use super::routes::{confirm, health_check, subscribe};
 use crate::configuration::{DatabaseSettings, Settings};
-use crate::routes::publish_newsletter;
+use crate::routes::{home, login, login_form, publish_newsletter};
 use actix_web::{dev::Server, web, App, HttpServer};
+use secrecy::Secret;
 use sqlx::postgres::PgPoolOptions;
 use sqlx::PgPool;
 use std::net::TcpListener;
@@ -42,6 +43,7 @@ impl Application {
             connection_pool,
             email_client,
             configuration.application.base_url,
+            configuration.application.hmac_secret,
         )?;
 
         Ok(Self { port, server })
@@ -73,11 +75,13 @@ pub fn run(
     db_pool: PgPool,
     email_client: EmailClient,
     base_url: String,
+    hmac_secret: Secret<String>,
 ) -> Result<Server, std::io::Error> {
     // Make connection an ARC
     let db_pool = web::Data::new(db_pool);
     let email_client = web::Data::new(email_client);
     let base_url = web::Data::new(ApplicationBaseUrl(base_url));
+    let hmac_secret = web::Data::new(HmacSecret(hmac_secret));
 
     // Capture `connection` in the closure
     let server = HttpServer::new(move || {
@@ -87,9 +91,14 @@ pub fn run(
             .route("/subscriptions", web::post().to(subscribe))
             .route("/subscriptions/confirm", web::get().to(confirm))
             .route("/newsletters", web::post().to(publish_newsletter))
+            .route("/login", web::post().to(login))
+            // HTML
+            .route("/", web::get().to(home))
+            .route("/login", web::get().to(login_form))
             .app_data(db_pool.clone())
             .app_data(email_client.clone())
             .app_data(base_url.clone())
+            .app_data(hmac_secret.clone())
     })
     .listen(listener)?
     .run();
@@ -97,3 +106,5 @@ pub fn run(
     // Let others do the awaiting for this server.
     Ok(server)
 }
+
+pub struct HmacSecret(pub Secret<String>);

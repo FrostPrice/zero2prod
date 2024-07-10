@@ -237,3 +237,9 @@ For example, the PHC string format for Argon2 is:
 
 - Argon2:
   `${algorithm}${algorithm version}${,-separated algorithm parameters}${hash}${salt}`
+
+For working with HTML in Rust, you can use the following crates:
+
+- htmlescape
+- hmac
+- urlencoding
