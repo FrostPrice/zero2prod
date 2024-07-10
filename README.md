@@ -228,3 +228,12 @@ These are some usefull crates:
 - tera (template engine for emails)
 - thiserror (better error handling)
 - anyhow (better error handling, working together with thiserror)
+- sha3 (hashing with SHA3)
+- argon2 (hashing with Argon2)
+
+Search about PHC string format for password hashing.
+
+For example, the PHC string format for Argon2 is:
+
+- Argon2:
+  `${algorithm}${algorithm version}${,-separated algorithm parameters}${hash}${salt}`

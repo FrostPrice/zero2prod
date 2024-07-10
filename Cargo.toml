@@ -50,6 +50,8 @@ reqwest = { version = "0.12.5", default-features = false, features = [
 rand = { version = "0.8.5", features = ["std_rng"] }
 thiserror = "1.0.61"
 anyhow = "1.0.86"
+base64 = "0.22.1"
+argon2 = { version = "0.5.3", features = ["std"] }
 
 # Used only when running tests or examples
 # Are not compiled in the final binary
