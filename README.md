@@ -20,6 +20,14 @@ To run the tests, use the following command:
 cargo test
 ```
 
+PS: On linux you may achieve a limit on file descriptors, to fix it, run the following command:
+
+```bash
+ulimit -n 8192
+```
+
+You may change the number of file descriptors to another value if needed.
+
 To run tests with logging enabled, use the following command:
 
 ```bash
@@ -243,3 +251,9 @@ For working with HTML in Rust, you can use the following crates:
 - htmlescape
 - hmac
 - urlencoding
+
+For working with Actix-Web, you can use the following crates:
+
+- actix-web
+- actix-session
+- actix-web-flash-messages
