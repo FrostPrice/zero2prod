@@ -55,7 +55,7 @@ pub async fn publish_newsletter(
         }
     }
     FlashMessage::info("The newsletter issue has been published!").send();
-    Ok(see_other("/admin/newsletter"))
+    Ok(see_other("/admin/newsletters"))
 }
 
 struct ConfirmedSubscriber {

@@ -24,7 +24,7 @@ pub async fn newsletter_form(
                 </head>
                 <body>
                 {msg_html}
-                <form action="/admin/newsletter" method="post">
+                <form action="/admin/newsletters" method="post">
                     <label>Title:<br>
                         <input
                             type="text"
