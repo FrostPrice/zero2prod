@@ -2,6 +2,7 @@ use crate::authentication::UserId;
 use actix_web::{http::header::ContentType, web, HttpResponse};
 use actix_web_flash_messages::IncomingFlashMessages;
 use std::fmt::Write;
+use uuid::Uuid;
 
 pub async fn newsletter_form(
     _user_id: web::ReqData<UserId>,
@@ -12,6 +13,8 @@ pub async fn newsletter_form(
     for m in flash_messages.iter() {
         writeln!(msg_html, "<p><i>{}</i></p>", m.content()).unwrap();
     }
+
+    let idempotency_key = Uuid::new_v4();
 
     Ok(HttpResponse::Ok()
         .content_type(ContentType::html())
@@ -51,6 +54,7 @@ pub async fn newsletter_form(
                         ></textarea>
                     </label>
                     <br>
+                    <input hidden type="text" name="idempotency_key" value="{idempotency_key}" />
                     <button type="submit">Publish</button>
                 </form>
                 <p><a href="/admin/dashboard">&lt;- Back</a></p>

@@ -70,5 +70,6 @@ quickcheck = "1.0.3"
 quickcheck_macros = "1.0.0"
 rand = "0.8.5"
 serde_json = "1.0.120"
+serde_urlencoded = "0.7.1"
 tokio = { version = "1.38.0", features = ["rt", "macros"] }
 wiremock = "0.6.0"
